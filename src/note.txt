@@ -1,0 +1,30 @@
+vuex的管理
+1，/store/state
+export default {
+  userId,   //用户id
+  storeName,  店铺名
+  goods: [], //所有食品数组
+}
+2.mutations(转变)操纵state
+3.actions操纵mutations
+4.基于state的计算属性getters
+5.mutations和actions之间进行交互的常量mutations-type
+
+计算属性是在状态改变或者初始化的时候执行
+
+查看详情页
+https://blog.csdn.net/e87e09e11/article/details/79209764
+https://segmentfault.com/q/1010000009209300
+
+router-link传参
+https://blog.csdn.net/sangjinchao/article/details/70888259
+
+// 字符串
+this.$router.push('/home/first')
+
+// 对象
+this.$router.push({ path: '/home/first' })
+
+// 命名的路由
+this.$router.push({ name: 'home', params: { userId: wise }})
+
