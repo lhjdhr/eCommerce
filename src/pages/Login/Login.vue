@@ -62,7 +62,7 @@
       return {
         loginWay: false, // true代表短信登陆, false代表密码
         showPwd: false, // 是否显示密码
-        phone: 17630329897, // 手机号
+        phone: 15862354156, // 手机号
         username: '', // 用户名
         password: 123123, // 密码
         alertText: '', // 提示文本

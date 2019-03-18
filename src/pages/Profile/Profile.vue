@@ -79,21 +79,6 @@
       </a>
     </section>
     <section class="profile_my_order border-1px">
-      <!-- 服务中心 -->
-      <a href="javascript:" class="my_order">
-            <span>
-              <i class="iconfont icon-fuwu"></i>
-            </span>
-        <div class="my_order_div">
-          <span>我的足迹</span>
-          <span class="my_order_icon">
-                <i class="iconfont icon-jiantou1"></i>
-              </span>
-        </div>
-      </a>
-    </section>
-
-    <section class="profile_my_order border-1px">
       <mt-button type="danger" style="width: 100%" v-if="userInfo.userId" @click="logout">退出登陆</mt-button>
     </section>
   </section>

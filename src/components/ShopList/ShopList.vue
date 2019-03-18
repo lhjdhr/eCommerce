@@ -1,13 +1,13 @@
  <template>
   <div class="shop_container">
     <ul class="shop_list" v-if="goods.length">
-      <li class="shop_li border-1px" v-for="(shop, index) in goods"    
+      <li class="shop_li1 border-1px" v-for="(shop, index) in goods"    
           :key="index">
         <a @click="$router.push({path: '/goodsDetails', query: {goodsId:shop.goodsId}})">
-          <div class="shop_left">
+          <div class="shop_left2">
               <img :src="baseImgUrl + shop.imagePath" class="shop_img">
           </div>
-          <div class="shop_right">
+          <div class="shop_right2">
             <section class="shop_detail_header">
               <h4 class="shop_title ellipsis">{{shop.name}}</h4>
               <ul class="shop_detail_ul"></ul>
@@ -20,12 +20,7 @@
                 </div>
               </section>
             </section>
-            <section class="shop_distance">
-              <p class="shop_delivery_msg">
-                <span> {{shop.details}}</span>
-              </p>
-              <p>goodsId:{{shop.goodsId}}</p>
-            </section>      
+   
           </div>
         </a>
           <div class="cartcontrol-wrapper">
@@ -69,7 +64,7 @@
   .shop_container
     margin-bottom 50px
     .shop_list
-      .shop_li
+      .shop_li1
         display:inline-block
         bottom-border-1px(#f1f1f1)
         width 50%
@@ -79,21 +74,20 @@
             bottom: 12px 
         >a
           clearFix()
-          display block
           box-sizing border-box
           padding 15px 8px
           width 100%
-          .shop_left       
+          .shop_left2       
             box-sizing border-box
-            width 100%
+            width 87%
             height 75px
             margin-bottom:10px
             .shop_img
               display block
               width 100%
               height 100%
-          .shop_right          
-            width 100%
+          .shop_right2          
+            width 94%
             padding-right:20px
             .shop_detail_header
               clearFix()
@@ -151,7 +145,7 @@
                 .delivery_right
                   color #02a774
                   border 1px solid #02a774
-            .shop_distance
+            .shop_distance2
               clearFix()
               width 100%
               font-size 12px

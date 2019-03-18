@@ -1,6 +1,6 @@
   <template>
   <div class="shop_container">
-   <div> {{$route.query.status}}</div>
+ 
     <ul class="shop_list" v-if="order.length">
       <li class="shop_li border-1px" v-for="(order, index) in order"    
           :key="index">

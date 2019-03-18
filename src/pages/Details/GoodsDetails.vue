@@ -25,8 +25,8 @@
           <li><span class="bold">商品价格</span> <span>{{goodsInfo.money}} </span></li>
           <li><span class="bold">库存</span> <span>{{goodsInfo.specification}} </span></li>
           <li>
-             <p> 详细信息 </p>
-              <p> {{goodsInfo.details}}</p>
+             <p class="txp"> 详细信息 </p>
+              <p class="txp"> {{goodsInfo.details}}</p>
           </li>
         </ul>
       </section>   
@@ -116,14 +116,20 @@
          align-items center
          margin-right -10px
          padding 16px 12px 16px 0
-         line-height 4px
+         line-height 15px
          bottom-border-1px(#ddd)
          font-size 13px
           > .bold
             font-weight 700
             color #333
+          > .txp
+            width 100%
           &:last-child
             border-none()
+        >li:last-child{
+            height 50px
+          }
+         
     
 
 

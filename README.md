@@ -1,5 +1,5 @@
 # smsrt
-
+$route.query.status 
 > A Vue.js project
 
 ## Build Setup

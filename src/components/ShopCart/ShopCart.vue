@@ -38,10 +38,10 @@
                   <CartControl :food="food"/>
                 </div>
               </li> -->
-              <li class="food" v-for="(food, index) in shopCart" :key="index">
-                <input type="checkbox">
+              <li class="food" v-for="(food, index) in shopCart" :key="index" style='position:relative'>
                 <img :src="imgBaseUrl + food.imagePath" class="shop_img">
-                <span class="name">{{food.name}}</span>
+               
+                <div class="name" style='position:absolute;padding:10px;width:95px;float:left;left:50px;top:2px;text-overflow: ellipsis;height:40px;overflow: hidden;'>{{food.name}}</div>
                 <div class="price "><span>￥{{food.money}}</span></div>
                  <div class="cartcontrol-wrapper">
                   <CartControl :food="food"/>
@@ -267,7 +267,7 @@
       top 0
       z-index -1
       width 100%
-      transform translateY(-175%)
+      transform translateY(-171%)
       &.move-enter-active, &.move-leave-active
         transition transform .3s
       &.move-enter, &.move-leave-to
@@ -290,7 +290,6 @@
       .list-content
         padding 0 18px
         max-height 217px
-        overflow hidden
         background #fff
         .food
           position relative
