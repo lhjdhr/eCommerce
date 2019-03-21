@@ -22,16 +22,15 @@
       document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
     }
     
-    window.addEventListener('touchmove', func, { passive: false })
-    document.addEventListener('click', function(event) {
-    // 判断默认行为是否可以被禁用
-    if (event.cancelable) {
-        // 判断默认行为是否已经被禁用
-        if (!event.defaultPrevented) {
-            event.preventDefault();
-        }
-    }
-}, false);
+//     document.addEventListener('click', function(event) {
+//     // 判断默认行为是否可以被禁用
+//     if (event.cancelable) {
+//         // 判断默认行为是否已经被禁用
+//         if (!event.defaultPrevented) {
+//             event.preventDefault();
+//         }
+//     }
+// }, false);
   </script>
 </head>
 <body>

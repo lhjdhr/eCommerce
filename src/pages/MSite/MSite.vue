@@ -94,7 +94,7 @@
         autoplay: true,//可选选项，自动滑动
         })
     },
-      computed: {
+    computed: {
       ...mapState(['userInfo'])
     },
     methods: {
@@ -104,7 +104,9 @@
             click: true        
           })
         })
-      }
+      },
+
+      
     },     
     components: {
       HeaderTop,

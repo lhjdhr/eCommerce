@@ -39,10 +39,11 @@
 
 <script>
   import {mapState} from 'vuex' 
+  import ind from '../../../api/index'
   export default {
      data() {
       return {
-        imgBaseUrl:'http://wlgzs.org:10012/'
+        imgBaseUrl: ind.ImgUrl 
       }
     },
      mounted (){

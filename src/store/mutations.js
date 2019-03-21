@@ -22,6 +22,9 @@ import {
  
 } from './mutation-types'
 // import { it } from 'mocha';
+import { changeCar} from "../api";
+import Axios from 'axios';
+import ind from '../api/index'
 
 export default {
   [RECEIVE_storeGoods] (state, {storeGoods}) {
@@ -51,9 +54,7 @@ export default {
   [RECEIVE_userInfo] (state, {userInfo}) {
     state.userInfo = userInfo
   },
-  [RECEIVE_shopCart] (state, {shopCart}) { //这里的shopCart是actions里面的方法传过来的数据results
-    state.shopCart = shopCart                //将后端的shopCart和state里面的shopCart实现同步
-  },
+ 
   [RESET_userInfo](state){
     state.userInfo = ''
   },
@@ -61,21 +62,38 @@ export default {
   [EDIT_userinfo] (state, {userInfo}) {  
     state.userInfo = userInfo                
   },
-  [INCREMENT_foodCount] (state, {food}) {
-    if(!food.count){
-       Vue.set(food,"count",1)//让新增的属性也有数据绑定
-       state.shopCart.push(food) //添加到购物车
-    }else{  //已经有food的情况下
-      food.count++;
+ async [INCREMENT_foodCount] (state, {food}) {
+  const result=await changeCar({goodsId:food.goodsId,count: 1,userId:localStorage.getItem('userId')});
+
+    if(!food.goodsCount){ 
+          Vue.set(food,"goodsCount",1)//让新增的属性也有数据绑定
+          state.shopCart.push(food) //添加到购物车 
+    }else{  //已经有food的情况
+      food.goodsCount++;     
     }
   },
-  [DECREMENT_foodCount] (state, {food}) {
-    if(food.count){ //count有值才减一
-      food.count--;
-      if(food.count==0){//将food移除
+ async [DECREMENT_foodCount] (state, {food}) {
+    if(food.goodsCount){ //count有值才减一
+      food.goodsCount--;
+      const result=await changeCar({goodsId:food.goodsId,count:-1,userId:localStorage.getItem('userId')});
+      if(result.resultCode == "SUCCESS"){  
+        console.log("商品数量-1")
+      } else{
+        console.log(result.message);
+      } 
+      if(food.goodsCount==0){//将food移除
         state.shopCart.splice(state.shopCart.indexOf(food),1)
+        var Url=ind.ImgUrl+"/shopCart/delete?userId="+localStorage.getItem('userId')+"&shopCartId="+food.goodsId
+        Axios
+        .delete(Url)
+        .then(function(data,err){
+          console.log(data)
+        })
       }
     }       
+  },
+  [RECEIVE_shopCart] (state, {shopCart}) { //这里的shopCart是actions里面的方法传过来的数据results
+    state.shopCart = shopCart                //将后端的shopCart和state里面的shopCart实现同步
   },
   [ADD_ITEM] (state) {
     let isHas=state.shopCart.some(item=>{
@@ -90,19 +108,20 @@ export default {
       state.shopCart.push({id,goodsName,money,count:1})
     }
   },
-  addGood(state,{id,goodsName,money}){
-    let isHas=state.shopCart.some(item=>{
-      if(item.id==id){
-        item.count++
-        return true;
-      }else{
-        return false
-      }
-    })
-    if(!isHas){
-      state.shopCart.push({id,goodsName,money,count:1})
-    }
-  },
+
+  // addGood(state,{id,goodsName,money}){
+  //   let isHas=state.shopCart.some(item=>{
+  //     if(item.id==id){
+  //       item.count++
+  //       return true;
+  //     }else{
+  //       return false
+  //     }
+  //   })
+  //   if(!isHas){
+  //     state.shopCart.push({id,goodsName,money,count:1})
+  //   }
+  // },
    
 
   remove(state,{shopCartId}){

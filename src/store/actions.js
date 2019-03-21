@@ -5,6 +5,7 @@
 import axios from 'axios'
 const BASE_URL = '/api'
 import {Toast } from 'mint-ui'
+import Vue from 'vue'
 import {
   RECEIVE_goods,
   RECEIVE_goodsInfo,
@@ -37,8 +38,10 @@ import {
   reqOrder,
   reqOrderDetail,
   addGood,
+  changeCar,
   paidOrder
 } from "../api";
+import {addGoods} from './mutations'
 import ajax from "../api/ajax";
 
 export default {
@@ -201,21 +204,21 @@ export default {
     }
   },
   // 添加商品
-  addGoods({ commit}, param) {
-    let config = {
-      headers: {
-        'Content-Type': 'multipart/form-data' //之前说的以表单传数据的格式来传递fromdata
-      }
-    }
-    axios.post(`${BASE_URL}/store/insertGood?storeId=2`, param, config).then((res) => {
-      Toast("添加商品成功")
-    })
-  },
-  bulidOrder({commit},param){
-    axios.post(`${BASE_URL}/order/buildOrder?total_money=${param.total_money}&goodsIds=${param.goodsIds}&shoppingCounts=${param.shoppingCounts}&userId=${param.userId }`).then((res) => {
-      Toast("订单创建成功")
-    })
-  },
+  // addGoods({ commit}, param) {
+  //   let config = {
+  //     headers: {
+  //       'Content-Type': 'multipart/form-data' //之前说的以表单传数据的格式来传递fromdata
+  //     }
+  //   }
+  //   axios.post(`${BASE_URL}/store/insertGood?storeId=2`, param, config).then((res) => {
+  //     Toast("添加商品成功")
+  //   })
+  // },
+  // bulidOrder({commit},param){
+  //   axios.post(`${BASE_URL}/order/buildOrder?total_money=${param.total_money}&goodsIds=${param.goodsIds}&shoppingCounts=${param.shoppingCounts}&userId=${param.userId }`).then((res) => {
+  //     Toast("订单创建成功")
+  //   })
+  // },
   // 异步获取用户信息 this.$route.query.id
   async getUserInfo({
     commit
@@ -257,37 +260,25 @@ export default {
   
  // 异步获取购物车信息
   async getShopCart({ commit}, param) {
-    console.log(param)
-    const result = await reqShopCart(param);
+    const userId =localStorage.getItem('userId')
+    const result = await reqShopCart(userId);
     if (result.resultCode === "SUCCESS") {
       const shopCart = result.data;
-      console.log("购物车信息");
-      console.log(shopCart)
       commit(RECEIVE_shopCart, {  shopCart  });
 
     }
   },
-  // 同步更新food中的count值
-
-  //增加减少数量
-  updateFoodCount({
-    commit
-  }, {
-    isAdd,
-    food
-  }) {
-    if (isAdd) {
-      //增加
-      commit(INCREMENT_foodCount, {
-        food
-      }); //increment
+   //增加减少数量
+  async  updateFoodCount({commit}, {isAdd,food}) {
+    if (isAdd) {   
+        commit(INCREMENT_foodCount, {food }); //increment
     } else {
       //减少
-      commit(DECREMENT_foodCount, {
-        food
-      }); //decrement
-    }
-  },
+        commit(DECREMENT_foodCount, {food}); //decrement
+     }
+    },
+ 
+
   //删除商品
   removeGood({
     commit

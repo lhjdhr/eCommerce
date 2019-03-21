@@ -39,11 +39,11 @@
 <script>
   import {mapState, mapActions} from 'vuex'
   import CartControl from '../CartControl/CartControl.vue'
-  
+  import ind from '../../api/index'
   export default {
      data () {
       return {
-        baseImgUrl: 'http://wlgzs.org:10012/'
+        baseImgUrl: ind.ImgUrl 
       }
     },
      mounted () {

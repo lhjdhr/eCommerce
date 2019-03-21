@@ -45,12 +45,13 @@
   import {mapState} from 'vuex'
   import CartControl from '../../../components/CartControl/CartControl.vue'
   import Food from '../../../components/Food/Food.vue'
+   import ind from '../../../api/index'
 
   export default {
     data(){
       return {
         food:{},//需要显示的food
-         baseImg:'http://wlgzs.org:10012/'
+         baseImg: ind.ImgUrl 
       }
     },
     mounted() {

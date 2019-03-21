@@ -13,34 +13,19 @@
           </div>
           <div class="price" :class="{highlight: totalCount}">￥{{totalPrice}}</div>
         </div>
-        <div class="content-right">
-        <router-link :to="{path:'/confirmOrder',query:{shopId}}">
-          <div class="pay">
-              结算 
-          </div>
-          </router-link>
-        </div>
-        
+        <div class="content-right">     
+        </div>      
       </div>
       <transition name="move">
         <div class="shopcart-list" v-show="listShow">
           <div class="list-header">
             <h1 class="title">购物车</h1>
-
             <span class="empty" @click="clearCart">清空</span>
           </div>
           <div class="list-content">
             <ul>
-              <!-- <li class="food" v-for="(food, index) in cartFoods" :key="index">
-                <span class="name">{{food.name}}</span>
-                <div class="price"><span>￥{{food.price}}</span></div>
-                <div class="cartcontrol-wrapper">
-                  <CartControl :food="food"/>
-                </div>
-              </li> -->
               <li class="food" v-for="(food, index) in shopCart" :key="index" style='position:relative'>
-                <img :src="imgBaseUrl + food.imagePath" class="shop_img">
-               
+                <img :src="imgBaseUrl + food.imagePath" class="shop_img">              
                 <div class="name" style='position:absolute;padding:10px;width:95px;float:left;left:50px;top:2px;text-overflow: ellipsis;height:40px;overflow: hidden;'>{{food.name}}</div>
                 <div class="price "><span>￥{{food.money}}</span></div>
                  <div class="cartcontrol-wrapper">
@@ -61,8 +46,7 @@
        <button @click="toLogin()">立即登录</button>
     </section>
   </section>
- </div> 
-     
+ </div>    
   </div>
 </template>
 
@@ -74,16 +58,17 @@
 
   export default {
     data () {
-      return {
+      return {    
         isShow: true,
         imgBaseUrl:'http://wlgzs.org:10012/'
       }
     },
-  
-    computed: {
+    created() {
+       this.$store.dispatch('getShopCart');
+    },
+    computed: {    
       ...mapState(['shopCart','userInfo']),
       ...mapGetters(['totalCount', 'totalPrice']),
-
       listShow () {
         // 如果总数量为0, 直接不显示
         if(this.totalCount===0) {
@@ -108,7 +93,7 @@
       }
     },
     methods: {
-      ...mapActions(['removeGood']),
+      ...mapActions(['removeGood']), 
       toggleShow () {
         // 只有当总数量大于0时切换
         if(this.totalCount>0) {

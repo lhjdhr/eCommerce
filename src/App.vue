@@ -10,19 +10,6 @@
   import FooterGuide from './components/FooterGuide/FooterGuide.vue'
 
   export default {
-
-    mounted () {
-      this.getUserInfo()
-    },
-     created(){
-      console.log("购物车的id")
-      console.log(this.userInfo.userId)
-      this.$store.dispatch("getShopCart",this.userInfo.userId)
-    },
-    methods: {
-      ...mapActions(['getUserInfo'])
-    },
-
     components: {
       FooterGuide
     }

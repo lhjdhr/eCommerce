@@ -37,12 +37,13 @@
 <script>
   import {mapState} from 'vuex'
   import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
+  import ind from '../../api/index'
   export default {
 
     data () {
       return {
         keyword: '',
-        imgBaseUrl: 'http://wlgzs.org:10012/',
+        imgBaseUrl: ind.ImgUrl ,
         noSearchShops: false
       }
     },

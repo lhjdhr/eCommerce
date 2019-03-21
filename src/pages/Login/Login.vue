@@ -90,14 +90,18 @@
          } else if(!this.password) {
             this.showAlert('密码输入错误')
             return
-          }           
+        }           
          const result = await reqLogin({phone,password})// 发送ajax请求密码登录
          console.log(result.resultCode)  
          if(result.resultCode === "SUCCESS") {   
-            const user = result.data             
-            this.$store.dispatch('recordUser', user)// 将user保存到vuex的state
-            this.$router.replace('/profile') // 去个人中心界面
+            const user = result.data  
+            console.log(user)
+            localStorage.setItem('phone',user.phone) 
+            localStorage.setItem('password',user.password) 
+            localStorage.setItem('userId',user.userId) 
             
+            this.$store.dispatch('recordUser', user)// 将user保存到vuex的state
+            this.$router.replace('/profile') // 去个人中心界面        
         } else {         
             const message = result.message// 显示警告提示
             this.showAlert(message)

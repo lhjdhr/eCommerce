@@ -71,7 +71,7 @@
  
     import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
     import alertTip from '../../components/AlertTip/AlertTip.vue'
-
+    import Img from '../../api/index'
     export default {
         data () {
          return {
@@ -98,7 +98,7 @@
        methods: {
            initData(){
               this.total_money= this.totalPrice,
-              this.baseImgUrl="http://wlgzs.org:10012/order/ali?total_money="+this.total_money 
+              this.baseImgUrl=Img.ImgUrl+"order/ali?total_money="+this.total_money 
            },         
        },
        components: {

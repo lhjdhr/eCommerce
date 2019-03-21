@@ -41,12 +41,12 @@
   import Swiper from 'swiper'
   import 'swiper/dist/css/swiper.min.css'
   import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
-
+   import ind from '../../api/index'
 
   export default {
     data() {
       return {
-        baseImgUrl: 'http://wlgzs.org:10012/'
+        baseImgUrl:  ind.ImgUrl 
       }
     },
     computed:{

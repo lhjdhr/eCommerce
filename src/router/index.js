@@ -22,8 +22,6 @@ import UserInfo from '../pages/Profile/UserInfo.vue'
 import CreateStore from '../pages/CreateStore/CreateStore.vue'
 import Order from '../pages/Order/Order.vue'
 import OrderList from '../pages/Order/OrderList/OrderList.vue'
-import OrderList2 from '../pages/Order/OrderList/OrderList2.vue'
-import OrderList3 from '../pages/Order/OrderList/OrderList3.vue'
 
 import OrderDetails from '../pages/Order/orderDetails/orderDetails.vue'
 import ConfirmOrder from '../pages/ConfirmOrder/ConfirmOrder.vue'
@@ -149,14 +147,14 @@ export default new VueRouter({
         },
         {
           path: '/order/paid',
-          component: OrderList2,
+          component: OrderList,
           meta: {
             showFooter: true
           },
         },
         {
           path: '/order/received',
-          component: OrderList3,
+          component: OrderList,
           meta: {
             showFooter: true
           },

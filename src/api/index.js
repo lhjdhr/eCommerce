@@ -5,7 +5,9 @@
 import ajax from './ajax'
 //const BASE_URL = 'http://192.168.43.178:10012'
 const BASE_URL = '/api'
-
+ export default  {
+    ImgUrl:"http://wlgzs.org:10012/"
+}
  
 // 2、获取所有商品
 //export const reqFoodCategorys = () => ajax(BASE_URL+'/index_category')
@@ -53,8 +55,9 @@ export const checkExsis = (userName) => ajax(BASE_URL+`/checkUserName?userName=$
 
  //获取购物车信息
  export const reqShopCart = (userId) => ajax(`${BASE_URL}/shopCart/find?userId=${userId}`)
- //单个删除购物车物品del
- export const del = ({userId,shopCartId}) => ajax(`${BASE_URL}/shopCart/delete?userId=${userId}&shopCartId=${shopCartId}`)
+ //改变购物车信息
+export const changeCar= ({goodsId,count,userId}) => ajax(`${BASE_URL}/shopCart/add`,{goodsId,count,userId},'POST')
+
 
  //查看订单
  export const reqOrder = (param) => ajax(`${BASE_URL}/order/seeOrder?status=${param.status}&userId=${param.userId}`)

@@ -4,6 +4,19 @@ $route.query.status
 
 ## Build Setup
 
+shopcat
+  <router-link :to="{path:'/confirmOrder',query:{shopId}}">
+   <div class="pay">
+        结算 
+    </div>
+    </router-link>
+
+
+
+
+
+
+
 ``` bash
 # install dependencies
 npm install
