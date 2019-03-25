@@ -48,9 +48,6 @@
     },
      mounted (){
       let param={userId:this.$route.query.userId,status:this.$route.query.status}
-    //  let param={userId:2,status:1}
-      console.log("order的参数inhgg")
-      console.log(this.$route.query.status)
       this.$store.dispatch('getOrder',param) 
     },
     computed: {

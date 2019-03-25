@@ -13,7 +13,12 @@
           </div>
           <div class="price" :class="{highlight: totalCount}">￥{{totalPrice}}</div>
         </div>
-        <div class="content-right">     
+        <div class="content-right">   
+          <router-link :to="{path:'/confirmOrder',query:{shopId}}">
+            <div class="pay">
+              结算 
+            </div>
+          </router-link>  
         </div>      
       </div>
       <transition name="move">
@@ -28,6 +33,7 @@
                 <img :src="imgBaseUrl + food.imagePath" class="shop_img">              
                 <div class="name" style='position:absolute;padding:10px;width:95px;float:left;left:50px;top:2px;text-overflow: ellipsis;height:40px;overflow: hidden;'>{{food.name}}</div>
                 <div class="price "><span>￥{{food.money}}</span></div>
+                <span>{{food.shopCartId}}</span>
                  <div class="cartcontrol-wrapper">
                   <CartControl :food="food"/>
                 </div>
@@ -60,6 +66,7 @@
     data () {
       return {    
         isShow: true,
+        shopId:'',
         imgBaseUrl:'http://wlgzs.org:10012/'
       }
     },

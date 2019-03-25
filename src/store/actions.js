@@ -124,17 +124,13 @@ export default {
     }
   },
   //获取所有订单
-  async getOrder({
-    commit
-  }, param) {
+  async getOrder({ commit }, param) {
     console.log(param.userId)
     const result = await reqOrder(param);
     console.log(result.data.list[0].orderStatus);
     if (result.resultCode === "SUCCESS") {
       const order = result.data.list;
-      commit(RECEIVE_order, {
-        order
-      });
+      commit(RECEIVE_order, {order});
     }
   },
   // 异步获取店铺信息

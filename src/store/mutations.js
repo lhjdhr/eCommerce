@@ -24,7 +24,10 @@ import {
 // import { it } from 'mocha';
 import { changeCar} from "../api";
 import Axios from 'axios';
-import ind from '../api/index'
+import ind from '../api/index';
+ 
+//const BASE_URL = 'http://192.168.43.178:10012'
+const BASE_URL = '/api'
 
 export default {
   [RECEIVE_storeGoods] (state, {storeGoods}) {
@@ -62,6 +65,7 @@ export default {
   [EDIT_userinfo] (state, {userInfo}) {  
     state.userInfo = userInfo                
   },
+
  async [INCREMENT_foodCount] (state, {food}) {
   const result=await changeCar({goodsId:food.goodsId,count: 1,userId:localStorage.getItem('userId')});
 
@@ -83,7 +87,8 @@ export default {
       } 
       if(food.goodsCount==0){//将food移除
         state.shopCart.splice(state.shopCart.indexOf(food),1)
-        var Url=ind.ImgUrl+"/shopCart/delete?userId="+localStorage.getItem('userId')+"&shopCartId="+food.goodsId
+        var Url= `${BASE_URL}/shopCart/delete?userId=`+localStorage.getItem('userId')+"&shopCartId="+food.shopCartId
+         console.log("Url"+Url)
         Axios
         .delete(Url)
         .then(function(data,err){

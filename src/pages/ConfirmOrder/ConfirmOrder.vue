@@ -37,7 +37,7 @@
                     <li v-for="item in shopCart" :key="item.goodsId" class="food_item_style">                 
                         <span class="food_name">{{item.name}}</span>
                         <div class="num_price">
-                            <span>x {{item.count}}</span>
+                            <span>x {{item.goodsCount}}</span>
                             <span>¥{{item.money}}</span>
                         </div>
                     </li>
@@ -45,7 +45,7 @@
                 <div class="food_item_style2 total_price">
                     <p class="food_name2 ellipsis">订单 ¥{{totalPrice}}</p>
                     <div class="num_price2">
-                        <span>待支付 ¥{{totalPrice}}</span>
+                        <span> 待支付 ¥{{totalPrice}}</span>
                     </div>
                 </div>
             </section>
@@ -53,13 +53,14 @@
             <section class="confrim_order">
                 <div class="paidLeft">
                     <p>待支付 ¥{{totalCount}}</p>
+                   
                 </div>
                 <div class="PaidRight">
-                    <a  :href="baseImgUrl"> 确认下单</a>
+                    <a :href="baseImgUrl"> 确认下单</a>   
                 </div>
                
             </section>    
-        <alert-tip v-if="showAlert" @closeTip="showAlert = false" :alertText="alertText"></alert-tip>
+    
         <transition name="router-slid" mode="out-in">
             <router-view></router-view>
         </transition>
@@ -72,6 +73,7 @@
     import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
     import alertTip from '../../components/AlertTip/AlertTip.vue'
     import Img from '../../api/index'
+    const BASE_URL = '/api'
     export default {
         data () {
          return {
@@ -79,13 +81,13 @@
              userId:'',
              goodsIds:[],
              shoppingCounts:[],
-             baseImgUrl:'',     
+             baseImgUrl:this.baseImgUrl,  
+             showAlert:true   
          }
        },
        mounted() {
            this.userId=this.userInfo.userId
-           console.log(this.userId)
-        //    this.$store.dispatch("getShopCart",this.userId)           
+           console.log(this.userId)         
        },
        created() {
           this.initData();   
@@ -98,7 +100,8 @@
        methods: {
            initData(){
               this.total_money= this.totalPrice,
-              this.baseImgUrl=Img.ImgUrl+"order/ali?total_money="+this.total_money 
+              this.baseImgUrl= `${BASE_URL}/order/ali?total_money=`+this.total_money 
+              console.log("this.baseImgUrl="+this.baseImgUrl)
            },         
        },
        components: {

@@ -6,7 +6,7 @@ import ajax from './ajax'
 //const BASE_URL = 'http://192.168.43.178:10012'
 const BASE_URL = '/api'
  export default  {
-    ImgUrl:"http://wlgzs.org:10012/"
+    ImgUrl:"http://wlgzs.algerfan.cn:10012/"
 }
  
 // 2、获取所有商品

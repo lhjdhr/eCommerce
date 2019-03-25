@@ -17,6 +17,7 @@
                 <div class="order_section">
                  销量：{{shop.alreadySell}}
                  <span>价格：{{shop.money}}</span>
+               
                 </div>
               </section>
             </section>
