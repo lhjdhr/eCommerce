@@ -2,9 +2,7 @@
   <div class="food" v-if="isShow">
     <div class="food-content">
       <div class="image-header">
-         <!-- <img v-lazy="food.image">  -->
-          <img src="./images/6.jpg"> 
-        <!-- <p class="foodpanel-desc">{{food.info}}</p> -->
+          <img :src="baseImgUrl + food.imagePath"> 
         <div class="back" @click="toggleShow">
           <i class="iconfont icon-arrow_left"></i>
         </div>
@@ -12,25 +10,24 @@
       <div class="content">
         <h1 class="title">{{food.name}}</h1>
         <div class="detail">
+         <span class="sell-count">{{food.specification}}</span><br>
           <span class="sell-count">月售{{food.alreadySell}}份</span>
          
         </div>
         <div class="price">
           <span class="now">￥{{food.money}}</span>
-          <span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
         </div>  
         <div class="cartcontrol-wrapper">
-          <!-- <CartControl :food="food"/> -->
+          <CartControl :food="food"/>  
         </div>
       </div>
     </div>
     <div class="food-cover" @click="toggleShow"></div>
   </div>
 </template>
-
-
 <script>
-  // import CartControl from '../CartControl/CartControl.vue'
+   import CartControl from '../CartControl/CartControl.vue'
+   import ind from '../../api/index'
 
   export default {
     props: {
@@ -39,7 +36,8 @@
 
     data () {
       return {
-        isShow: false
+        isShow: false,
+        baseImgUrl:  ind.ImgUrl 
       }
     },
 
@@ -50,7 +48,7 @@
     },
 
     components: {
-      // CartControl
+       CartControl
     }
   }
 </script>
@@ -58,12 +56,14 @@
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   @import "../../common/stylus/mixins.styl"
 
-  .food
+   .food
     position: fixed
     left: 0
     top: 0
     bottom: 48px
-    z-index: 101
+    right:0
+    height:100%
+    z-index: 999
     width: 100%
     &.fade-enter-active, &.fade-leave-active
       transition opacity .5s
@@ -72,10 +72,10 @@
     .food-content
       position absolute
       left 50%
-      top 50%
+      top 37%
       transform translate(-50%, -50%)
       width 80%
-      height 65%
+      height 60%
       z-index 66
       background #fff
       border-radius 5px
@@ -118,9 +118,9 @@
           font-weight: 700
           color: rgb(7, 17, 27)
         .detail
+          color:rgb(147, 153, 159)
           margin-bottom: 18px
           line-height: 10px
-          height: 10px
           font-size: 0
           .sell-count, .rating
             font-size: 10px

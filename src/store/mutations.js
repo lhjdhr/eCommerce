@@ -6,6 +6,7 @@ import {
   RECEIVE_goods,
   RECEIVE_goodsInfo ,
   RECEIVE_searchGoods,
+  RECEIVE_searchType,
   RECEIVE_storeInfo,
   RECEIVE_storeGoods,
   RECEIVE_userInfo,
@@ -51,6 +52,9 @@ export default {
   [RECEIVE_searchGoods] (state, {searchGoods}) {
     state.searchGoods = searchGoods
   },
+  [RECEIVE_searchType] (state, {searchType}) {
+    state.searchType = searchType
+  },
   [RECEIVE_storeInfo] (state, {storeInfo}) {
     state.storeInfo = storeInfo
   },
@@ -67,8 +71,8 @@ export default {
   },
 
  async [INCREMENT_foodCount] (state, {food}) {
-  const result=await changeCar({goodsId:food.goodsId,count: 1,userId:localStorage.getItem('userId')});
 
+  const result=await changeCar({goodsId:food.goodsId,count: 1,userId:localStorage.getItem('userId')});
     if(!food.goodsCount){ 
           Vue.set(food,"goodsCount",1)//让新增的属性也有数据绑定
           state.shopCart.push(food) //添加到购物车 

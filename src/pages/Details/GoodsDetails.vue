@@ -23,10 +23,9 @@
           <li><span class="bold">商品名</span> <span>{{goodsInfo.name}}</span></li>
           <li><span class="bold">已销售</span> <span>{{goodsInfo.alreadySell}} </span></li>
           <li><span class="bold">商品价格</span> <span>{{goodsInfo.money}} </span></li>
-          <li><span class="bold">库存</span> <span>{{goodsInfo.specification}} </span></li>
           <li>
              <p class="txp"> 详细信息 </p>
-              <p class="txp"> {{goodsInfo.details}}</p>
+              <p class="txp"> {{goodsInfo.specification}}</p>
           </li>
         </ul>
       </section>   
@@ -34,7 +33,6 @@
     </div> 
   </section>
 </template>
-
 <script>
   import BScroll from 'better-scroll'
   import {mapState} from 'vuex'

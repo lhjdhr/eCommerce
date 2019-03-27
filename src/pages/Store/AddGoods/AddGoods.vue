@@ -19,8 +19,13 @@
              <input type="text" name="inventory" class="addGood_input" v-model="inventory">
          </div>
          <div class="rows">
-             <label for="" class="label">库存：</label>
-             <input type="text" name="type" class="addGood_input" v-model="type">
+             <label for="" class="label">类型：</label>
+             <select v-model="type" class='sele'>
+                 <option>甜品饮品</option>
+                 <option>五谷杂粮</option>
+                 <option>水果蔬菜</option>
+                 <option>肉质蛋类</option>
+             </select>
          </div>
          <div class="rows">
               <label for="" class="label">商品图片：</label>
@@ -38,7 +43,7 @@
         </div>  
          <div class="row">
              <label for="" class="label">商品简介：</label>
-             <textarea v-model="specification" id="" cols="33" rows="8" style="border:1px solid #333;margin:10px 0 0px 28px">在这里添加商品的简介</textarea>
+             <textarea v-model="specification" id="" cols="33" rows="8" style="border:1px solid #333;margin:10px 0 0px 0px;color:#666">在这里添加商品的简介</textarea>
          </div>
         <div class="ro">
             <input type="submit"  class="addGood_submit" value="添加"> 
@@ -50,6 +55,7 @@
 <script>
   import AlertTip from '../../../components/AlertTip/AlertTip.vue'
   import HeaderTop from '../../../components/HeaderTop/HeaderTop.vue'
+  import {mapState, mapGetters,mapActions} from 'vuex'
   import axios from 'axios';
   export default {
      
@@ -74,11 +80,10 @@
              param.append("type",this.type),
              param.append("specification",this.specification),
              param.append('storeId',storeId)
-             console.log(param.get("storeId"))
          for(var k = 0; k< this.imgList.length; k++){   
               param.append('file',this.imgList[k].file)            
          }
-         this.$store.dispatch('addGoods',param)        
+          this.$store.dispatch('addGoods',param)        
       },   
        fileChange(el){
                 if (!el.target.files[0].size) return;
@@ -150,6 +155,10 @@
           width 27%
           text-align right 
           line-height 35px
+      .sele
+       width 60%
+       float left
+       height 35px
       input
         height 35px
         padding 0 4px

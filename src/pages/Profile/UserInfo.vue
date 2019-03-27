@@ -1,6 +1,6 @@
 <template>
   <section class="addGood">  
-     <div v-if="userInfo.userId">
+     <div v-if="userId">
        <HeaderTop title="个人信息修改">
          <a class="back" slot="left" @click="$router.back()">
             <i class="iconfont icon-arrow_left"></i>
@@ -56,7 +56,8 @@ export default {
       phone:'',
       acceptAddress:'',
       email:'',
-      city:''      
+      city:'' ,
+      userId:localStorage.getItem('userId')     
     }
   },
   created() {
@@ -78,7 +79,7 @@ export default {
       this.$router.push('/login')
     },
     async editInfo(){
-      var userId=this.$route.query.userId
+      var userId=localStorage.getItem('userId') 
       const {nickname,phone,acceptAddress,email,city}=this    
       this.$store.dispatch('infoEdit',{nickname,phone,acceptAddress,email,city,userId})// 发送ajax请求密码登录
       },

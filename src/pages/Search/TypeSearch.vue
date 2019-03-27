@@ -5,15 +5,11 @@
         <i class="iconfont icon-arrow_left"></i>
       </a>
     </HeaderTop>
-    <form class="search_form" @submit.prevent="search">
-      <input type="search" placeholder="请输入商家名称" class="search_input" v-model="keyword">
-      <input type="submit" class="search_submit">
-    </form>
     <section class="list" v-if="!noSearchShops">
       <ul class="list_container">
         <!--:to="'/shop?id='+item.id"-->
         <router-link :to="{path:'/goodsDetails', query:{goodsId:item.goodsId}}" tag="li"
-                     v-for="item in searchGoods" :key="item.goodsId" class="list_li">
+                     v-for="item in searchType" :key="item.goodsId" class="list_li">
           <div class="item_left">
           <img :src="imgBaseUrl + item.imagePath" class="shop_img">
           </div>
@@ -29,7 +25,8 @@
         </router-link>
       </ul>
     </section>
-    <div class="search_none" v-else>很抱歉！无搜索结果</div>
+
+    <div class="search_none2" v-else>很抱歉！暂无此类商品！</div>
   </section>
 </template>
 
@@ -46,24 +43,17 @@
         noSearchShops: false
       }
     },
-
-    computed: {
-      ...mapState(['searchGoods'])
+    mounted() {
+      let type=this.$route.query.type
+      console.log(type)
+      this.$store.dispatch('searchType', type)
     },
-
-    methods: {
-      search () {
-        // 得到搜索关键字
-        const keyword = this.keyword.trim()
-        // 进行搜索
-        if(keyword) {
-          this.$store.dispatch('searchGoods', keyword)
-        }
-      }
+    computed: {
+      ...mapState(['searchType'])
     },
 
     watch: {
-      searchGoods (value) {
+      searchType (value) {
         if(!value.length) { // 没有数据
           this.noSearchShops = true
         } else {// 有数据
@@ -111,8 +101,10 @@
           background-color #CA0C16
 
     .list
+     
       .list_container
         background-color: #fff;
+        margin-top: 50px
         .list_li
           display: flex;
           justify-content: center;
@@ -135,10 +127,10 @@
                 margin-bottom 6px
                 &:last-child
                   margin-bottom 0
-    .search_none
+    .search_none2
       margin: 0 auto
       color: #333
       background-color: #fff
       text-align: center
-      margin-top: 0.125rem
+      margin-top: 6.125rem
 </style>

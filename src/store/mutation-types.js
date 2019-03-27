@@ -7,6 +7,7 @@ export const RECEIVE_goods = 'receive_goods' // 接收商品数组
 export const RECEIVE_goodsInfo  = 'receive_goodsInfo ' 
 //接收按照关键字搜索到的商品列表
 export const RECEIVE_searchGoods='receive_searchGoods'
+export const RECEIVE_searchType='receive_searchType '
  //查看店铺信息
 export const RECEIVE_storeInfo='receive_storeInfo'
 //创建店铺

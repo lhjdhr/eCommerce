@@ -62,7 +62,7 @@
       return {
         loginWay: false, // true代表短信登陆, false代表密码
         showPwd: false, // 是否显示密码
-        phone: 15862354156, // 手机号
+        phone: 15936517812, // 手机号
         username: '', // 用户名
         password: 123123, // 密码
         alertText: '', // 提示文本
@@ -92,14 +92,15 @@
             return
         }           
          const result = await reqLogin({phone,password})// 发送ajax请求密码登录
-         console.log(result.resultCode)  
          if(result.resultCode === "SUCCESS") {   
             const user = result.data  
-            console.log(user)
+            console.log("user:"+user)
             localStorage.setItem('phone',user.phone) 
-            localStorage.setItem('password',user.password) 
             localStorage.setItem('userId',user.userId) 
-            
+             console.log("user"+user.storeId)
+            if(user.storeId!=0 && user.storeId!=null){
+               localStorage.setItem('storeId',user.storeId) 
+            }  
             this.$store.dispatch('recordUser', user)// 将user保存到vuex的state
             this.$router.replace('/profile') // 去个人中心界面        
         } else {         
@@ -137,6 +138,12 @@
                 console.log(result)      
                 this.$store.dispatch('recordUser', user)// 将user保存到vuex的state    
                 this.$router.replace('/profile') // 去个人中心界面
+                 localStorage.setItem('phone',user.phone) 
+                 localStorage.setItem('userId',user.userId) 
+                if(user.storeId!=0 && user.storeId!=null){
+                   localStorage.setItem('storeId',user.storeId) 
+                }  
+
               } else {
                     const msg = result.message
                     this.showAlert(msg)

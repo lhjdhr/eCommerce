@@ -2,17 +2,17 @@
   <section class="profile">
      <HeaderTop title="个人中心"/>
     <section class="profile-number"> 
-      <router-link :to="userInfo.userId ? {path:'/userInfoEdit',query: {userId: userInfo.userId}}: '/login'" class="profile-link">
+      <router-link :to=" userId ? {path:'/userInfoEdit',query: {userId: userId}}: '/login'" class="profile-link">
         <div class="profile_image">
-          <i class="iconfont icon-person"></i>
+          <img src='./images/ava.jpg' style='width:60px ;height:60px'>
         </div>
         <div class="user-info">
-          <p class="user-info-top" v-if="!userInfo.phone">{{userInfo.username || '登录/注册'}}</p>
+          <p class="user-info-top" v-if="!phone">{{userInfo.username || '登录/注册'}}</p>
           <p>
                 <span class="user-icon">
                   <i class="iconfont icon-shouji icon-mobile"></i>
                 </span>
-            <span class="icon-mobile-number">{{userInfo.phone || '暂无绑定手机号'}}</span>
+            <span class="icon-mobile-number">{{phone || '暂无绑定手机号'}}</span>
           </p>
         </div>
         <span class="arrow">
@@ -42,7 +42,7 @@
             <span>
               <i class="iconfont icon-order-s"></i>
             </span>
-       <router-link :to="{path:'/order',query:{status:0,userId:userInfo.userId}}">
+       <router-link :to="{path:'/order',query:{status:0,userId:userId}}">
         <div class="my_order_div">
           <span>我的订单</span>
           <span class="my_order_icon">
@@ -52,7 +52,7 @@
        </router-link>
       </a>
       <!-- 积分商城 -->
-      <router-link :to="{path:'/store',query:{storeId:userInfo.storeId}}">
+      <router-link :to="{path:'/store',query:{storeId:storeId}}">
       <a href='javascript:' class="my_order">
             <span>
               <i class="iconfont icon-jifen"></i>
@@ -66,7 +66,7 @@
       </a>
       </router-link>
       <!-- 硅谷外卖会员卡 -->
-      <a  @click="$router.push({path: '/userInfoEdit', query: {userId: userInfo.userId}})"  class="my_order" >
+      <a  @click="$router.push({path: '/userInfoEdit', query: {userId: userId}})"  class="my_order" >
             <span>
               <i class="iconfont icon-vip"></i>
             </span>
@@ -79,7 +79,7 @@
       </a>
     </section>
     <section class="profile_my_order border-1px">
-      <mt-button type="danger" style="width: 100%" v-if="userInfo.userId" @click="logout">退出登陆</mt-button>
+      <mt-button type="danger" style="width: 100%" v-if="userId" @click="logout">退出登陆</mt-button>
     </section>
   </section>
 </template>
@@ -92,7 +92,8 @@
   export default {
     data(){
       return {
-        userId:''
+        userId:localStorage.getItem('userId'),
+        phone:localStorage.getItem('phone')
       }
     },
     computed: {

@@ -4,9 +4,9 @@
       <router-link  to="/addGoods">
         <i class="iconfont icon-tianjia"></i>
       </router-link>
-       </div>
+    </div>
     <div class="split"></div>
-    <div class="goods">  
+     <div class="goods"> 
       <div class="foods-wrapper">
           <li class="food-list-hook">            
             <ul>
@@ -16,9 +16,7 @@
                   <img width="57" height="57" :src="baseImg+food.imagePath">
                 </div>
                 <div class="content">
-                  <h2 class="name">{{food.name}} <span style="float:right"><i class="iconfont icon-waimai"></i></span></h2>
-                   
-                  <p class="desc">{{food.details}}</p>
+                  <h2 class="name">{{food.name}} </h2>  
                   <div class="extra">
                     <span class="count">月售{{food.alreadySell}}</span>                 
                   </div>
@@ -46,6 +44,7 @@
   import CartControl from '../../../components/CartControl/CartControl.vue'
   import Food from '../../../components/Food/Food.vue'
    import ind from '../../../api/index'
+   import { userInfo } from 'os';
 
   export default {
     data(){
@@ -55,13 +54,13 @@
       }
     },
     mounted() {
-     let storeId=this.$route.query.storeId
-      console.log("==================="+storeId)
+       let storeId=localStorage.getItem("storeId")
+       console.log("storeId="+storeId)
       this.$store.dispatch('getStoreGoods',storeId)
       
     },
     computed: {
-      ...mapState(['storeGoods']),
+      ...mapState(['storeGoods','userInfo']),
     },
 
     methods: {
@@ -102,7 +101,7 @@
     bottom: 46px
     width: 100%
     background: #fff;
-    overflow: hidden
+   
     .menu-wrapper
       flex: 0 0 80px
       width: 80px

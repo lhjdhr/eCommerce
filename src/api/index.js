@@ -6,7 +6,7 @@ import ajax from './ajax'
 //const BASE_URL = 'http://192.168.43.178:10012'
 const BASE_URL = '/api'
  export default  {
-    ImgUrl:"http://wlgzs.algerfan.cn:10012/"
+    ImgUrl:"http://192.168.137.1:10012"
 }
  
 // 2、获取所有商品
@@ -17,6 +17,8 @@ export const reqGoodsInfo = (goodsId) => ajax(`${BASE_URL}/goods/selectGoodsById
 //搜索商品  根据关键字搜索商品
 export const reqSearchShops = (keyword) => ajax(`${BASE_URL}/goods/searchGoods?search=${keyword}`)
 //按分类搜索商品
+export const reqSearchType = (keyword) => ajax(`${BASE_URL}/goods/searchType?type=${keyword}`)
+
 
   
 reqOrderDetail

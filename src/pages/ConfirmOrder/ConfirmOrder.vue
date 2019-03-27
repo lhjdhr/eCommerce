@@ -57,10 +57,8 @@
                 </div>
                 <div class="PaidRight">
                     <a :href="baseImgUrl"> 确认下单</a>   
-                </div>
-               
+                </div>       
             </section>    
-    
         <transition name="router-slid" mode="out-in">
             <router-view></router-view>
         </transition>

@@ -16,8 +16,7 @@
               <section class="shop_rating_order_left">
                 <div class="order_section">
                  销量：{{shop.alreadySell}}
-                 <span>价格：{{shop.money}}</span>
-               
+                 <span>价格：{{shop.money}}</span>        
                 </div>
               </section>
             </section>
@@ -44,7 +43,7 @@
   export default {
      data () {
       return {
-        baseImgUrl: ind.ImgUrl 
+          baseImgUrl: ind.ImgUrl 
       }
     },
      mounted () {

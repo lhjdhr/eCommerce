@@ -1,38 +1,34 @@
  <template>
-<div class="conwrap">
-  <div v-if="!userInfo.userId">
-     <section class="create">
+<div class="conwrap2">
+     <section class="create" v-if="!userId" style="-webkit-transform:none !important">
       <section class="create_no_login">
       <img src="./images/person.png">
       <h3>抱歉，您还没有登录！</h3>
       <button @click="toLogin()">立即登录</button>
       </section>
     </section>
-  </div>
-  <div v-else-if="!userInfo.storeId">
-      <section class="create">
+      <section class="create" v-else-if="!storeId" style="-webkit-transform:none !important">
             <section class="create_no_login">
             <img src="./images/person.png">
             <h3>抱歉，您还没有店铺！</h3>
             <button @click="createStore">创建店铺</button>
             </section>
           </section>
-  </div>
-  <div v-else>
+  <section v-else style="-webkit-transform:none !important">
        <ShopHeader/>
           <div class="tab">
               <div class="tab-item">
-               <router-link :to="{path:'/store/goods',query:{storeId:userInfo.storeId}}" replace>商品</router-link>
+               <router-link :to="{path:'/store/goods',query:{storeId:storeId}}" replace>商品</router-link>
               </div>
           
             <div class="tab-item">
-                <router-link :to="{path:'/store/info',query:{storeId:userInfo.storeId}}" replace>详情</router-link>
+                <router-link :to="{path:'/store/info',query:{storeId:storeId}}" replace>详情</router-link>
             </div>
           </div>
           <keep-alive>
             <router-view/>
           </keep-alive>
-  </div>
+  </section>
 </div>
 </template>
 
@@ -43,8 +39,17 @@
   import ShopHeader from '../../components/ShopHeader/ShopHeader.vue'
 
   export default {
+    data() {
+      return {
+        userId:localStorage.getItem('userId'),
+        storeId:localStorage.getItem('storeId')     
+      }
+    },
     mounted () {
       this.aa()
+      // let storeId=localStorage.getItem('storeId') 
+      //  this.$store.dispatch('getStoreGoods',storeId)
+      //  this.$store.dispatch('getStoreInfo',storeId)
     },
     computed:{
       ...mapState(['userInfo','storeInfo'])
@@ -58,7 +63,7 @@
       },
       aa(){
         this.$nextTick(() => {// 一旦完成界面更新, 立即调用(此条语句要写在数据更新之后),滚动
-          new BScroll('.conwrap', {
+          new BScroll('.conwrap2', {
             click: true        
           })
         })
@@ -73,6 +78,12 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
   @import "../../common/stylus/mixins.styl"
+  .conwrap2
+   width:100%
+   position:fixed
+   top:0
+   bottom:48px
+   left:0
   .tab
     height 40px
     line-height 40px
@@ -100,6 +111,8 @@
             background #02a774
   .create  //创建店铺
     width 100%
+    -webkit-transform:none !important
+    transform:none !important
   .create_no_login
       padding-top 140px
       width 60%

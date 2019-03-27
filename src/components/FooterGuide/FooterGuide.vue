@@ -2,13 +2,13 @@
   <div class="footer_guide">
     <span class="guide_item" :class="{on: '/msite'===$route.path}" @click="goTo('/msite')">
       <span class="item_icon">
-        <i class="iconfont icon-waimai"></i>
+        <i class="iconfont icon-shouye"></i>
       </span>
       <span>首页</span>
     </span>
     <a href="javascript:;" class="guide_item" :class="{on: '/store'===$route.path}" @click="goTo('/store')">
       <span class="item_icon">
-        <i class="iconfont icon-xuanxiang"></i>
+        <i class="iconfont icon-icon4"></i>
       </span>
       <span>店铺</span>
     </a>

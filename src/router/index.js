@@ -8,6 +8,7 @@ import VueRouter from 'vue-router'
 const MSite = () => import('../pages/MSite/MSite.vue')
 const Store = () => import('../pages/Store/Store.vue')
 const Search = () => import('../pages/Search/Search.vue')
+const TypeSearch = () => import('../pages/Search/TypeSearch.vue')
 const Cart= () => import('../pages/Cart/Cart.vue')
 const Profile = () => import('../pages/Profile/Profile.vue')
 
@@ -27,6 +28,7 @@ import OrderDetails from '../pages/Order/orderDetails/orderDetails.vue'
 import ConfirmOrder from '../pages/ConfirmOrder/ConfirmOrder.vue'
 
 import PlacingOrder from '../pages/PlacingOrder/PlacingOrder.vue'
+ 
 
 // 声明使用插件
 Vue.use(VueRouter)
@@ -47,6 +49,10 @@ export default new VueRouter({
       meta: {
         showFooter: true
       }
+    },
+    {
+      path: '/typeSearch',
+      component: TypeSearch
     },
     {
       path: '/placingOrder',

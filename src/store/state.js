@@ -13,5 +13,6 @@ export default {
   isSelected:true,
   order:{},//订单
   orderInfo:{},
-  storeGoods:{}
+  storeGoods:{},
+  searchType:[]
 }

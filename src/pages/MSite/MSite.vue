@@ -11,7 +11,7 @@
           <span>首页</span>        
           <span class="header_login">
             <router-link class="routers"  to="/login">
-              <span v-if='!userInfo.userId'> 登录|注册</span>
+              <span v-if='!userId'> 登录|注册</span>
             </router-link>
             <router-link to="/search" class="routers">
                <i class="iconfont icon-sousuo" ></i>
@@ -31,25 +31,25 @@
           <div class="swiper-container">
             <div class="swiper-wrapper">
                <div class="swiper-slide">
-                <a href="javascript:" class="link_to_food">
+                <a href="javascript:" class="link_to_food" @click="$router.push({path: '/typeSearch', query: {type:'甜品饮品'}})">
                   <div class="food_container">
                     <img src="./images/nav/7.jpg">
                   </div>
                   <span>甜品饮品</span>
                 </a>
-                <a href="javascript:" class="link_to_food">
+                <a href="javascript:" class="link_to_food" @click="$router.push({path: '/typeSearch', query: {type:'五谷杂粮'}})">
                   <div class="food_container">
                     <img src="./images/nav/27.png">
                   </div>
                   <span>五谷杂粮</span>
                 </a>
-                <a href="javascript:" class="link_to_food">
+                <a href="javascript:" class="link_to_food" @click="$router.push({path: '/typeSearch', query: {type:'水果蔬菜'}})">
                   <div class="food_container">
                     <img src="./images/nav/13.jpg">
                   </div>
                   <span>水果蔬菜</span>
                 </a>
-                <a href="javascript:" class="link_to_food">
+                <a href="javascript:" class="link_to_food" @click="$router.push({path: '/typeSearch', query: {type:'肉质蛋类'}})">
                   <div class="food_container">
                     <img src="./images/nav/5.jpg">
                   </div>
@@ -84,6 +84,11 @@
   import ShopList from '../../components/ShopList/ShopList.vue'
 
   export default {
+    data() {
+      return {
+        userId:localStorage.getItem('userId')
+      }
+    },
      mounted(){
        this.$store.dispatch('getAllFoods')
        this.aa()

@@ -1,6 +1,6 @@
 <template>
   <div>
-   <div v-if="userInfo.userId">
+   <div v-if="userId">
     <p v-if="totalCount==0" style="text-align:center;color:oriange:font-weight:bold">您的购物车空空的~~</p>
     <div class="shopcart">
       <div class="content">
@@ -31,9 +31,9 @@
             <ul>
               <li class="food" v-for="(food, index) in shopCart" :key="index" style='position:relative'>
                 <img :src="imgBaseUrl + food.imagePath" class="shop_img">              
-                <div class="name" style='position:absolute;padding:10px;width:95px;float:left;left:50px;top:2px;text-overflow: ellipsis;height:40px;overflow: hidden;'>{{food.name}}</div>
+                <div class="name" style='position:absolute;padding:10px;width:95px;float:left;left:50px;top:2px;text-overflow: ellipsis;height:40px;overflow: hidden;'>{{food.goodsName}}</div>
                 <div class="price "><span>￥{{food.money}}</span></div>
-                <span>{{food.shopCartId}}</span>
+          
                  <div class="cartcontrol-wrapper">
                   <CartControl :food="food"/>
                 </div>
@@ -61,13 +61,15 @@
   import BScroll from 'better-scroll'
   import {mapState, mapGetters,mapActions} from 'vuex'
   import CartControl from '../CartControl/CartControl.vue'
+  import ind from '../../api/index'
 
   export default {
     data () {
       return {    
         isShow: true,
         shopId:'',
-        imgBaseUrl:'http://wlgzs.org:10012/'
+        imgBaseUrl:ind.ImgUrl ,
+         userId:localStorage.getItem('userId')
       }
     },
     created() {
