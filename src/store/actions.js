@@ -74,6 +74,9 @@ export default {
     localStorage.removeItem('phone')
     localStorage.removeItem('storeId')
     commit(RESET_userInfo)
+     //window.reload()
+  //  this.$router.go(0)
+  // location.reload()
   },
   //异步获取按照id查询到的商品
   async getGoodsInfo({

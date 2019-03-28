@@ -10,6 +10,11 @@
   import FooterGuide from './components/FooterGuide/FooterGuide.vue'
 
   export default {
+    provide() {
+      return {
+        reload:this.reload
+      }
+    },
     components: {
       FooterGuide
     }

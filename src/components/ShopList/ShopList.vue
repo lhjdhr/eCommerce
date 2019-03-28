@@ -16,7 +16,7 @@
               <section class="shop_rating_order_left">
                 <div class="order_section">
                  销量：{{shop.alreadySell}}
-                 <span>价格：{{shop.money}}</span>        
+                 <span>价格：<span class="now">¥</span>{{shop.money}}</span>        
                 </div>
               </section>
             </section>
@@ -124,9 +124,13 @@
                   margin-left 4px
                 .order_section
                   float left
-                  font-size 10px
+                  font-size 16px
                   color #666
                   transform scale(.8)
+                  .now
+                   margin-right: 8px
+                   font-size: 14px
+                   
               .shop_rating_order_right
                 float right
                 font-size 0

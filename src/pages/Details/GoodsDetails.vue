@@ -25,7 +25,7 @@
           <li><span class="bold">商品价格</span> <span>{{goodsInfo.money}} </span></li>
           <li>
              <p class="txp"> 详细信息 </p>
-              <p class="txp"> {{goodsInfo.specification}}</p>
+              <p class="txp"> {{goodsInfo.details}}</p>
           </li>
         </ul>
       </section>   

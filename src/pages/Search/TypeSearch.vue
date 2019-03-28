@@ -18,8 +18,8 @@
               <p>
                 <span style="font-weight:bold">{{item.name}}</span>
               </p>
-              <p>销售 {{item.alreadySell}} </p>
-              <p>价格{{item.money}}</p>
+              <p>销售： {{item.alreadySell}} 斤</p>
+              <p>价格：<span>¥</span>{{item.money}}元</p>
             </div>
           </section>
         </router-link>

@@ -8,7 +8,6 @@ const BASE_URL = '/api'
  export default  {
     ImgUrl:"http://192.168.137.1:10012"
 }
- 
 // 2、获取所有商品
 //export const reqFoodCategorys = () => ajax(BASE_URL+'/index_category')
 export const reqAllFoods = () => ajax(BASE_URL+'/goods/')
@@ -69,3 +68,4 @@ export const buildOrders=(param)=>ajax(`${BASE_URL}/order/buildOrder?total_money
  //提交支付账单
  export const  paidOrder = (param) => ajax(BASE_URL+'/order/ali',param, 'POST')
  // 6、用户名密码手机号注册
+

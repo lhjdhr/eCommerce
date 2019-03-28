@@ -3,8 +3,11 @@
      <HeaderTop title="个人中心"/>
     <section class="profile-number"> 
       <router-link :to=" userId ? {path:'/userInfoEdit',query: {userId: userId}}: '/login'" class="profile-link">
-        <div class="profile_image">
+        <div class="profile_image" v-if='userId'>
           <img src='./images/ava.jpg' style='width:60px ;height:60px'>
+        </div>
+        <div class="profile_image" v-else>
+         <i class="iconfont icon-person"></i> 
         </div>
         <div class="user-info">
           <p class="user-info-top" v-if="!phone">{{userInfo.username || '登录/注册'}}</p>
@@ -93,19 +96,24 @@
     data(){
       return {
         userId:localStorage.getItem('userId'),
-        phone:localStorage.getItem('phone')
+        phone:localStorage.getItem('phone'),
+        storeId:localStorage.getItem('storeId'),
       }
     },
+    inject:['reload'],
     computed: {
       ...mapState(['userInfo'])
     },
+    
     methods: {
-      logout () {
+     
+      logout () {   
         MessageBox.confirm('确认退出吗?').then(
           action => {
             // 请求退出
             this.$store.dispatch('logout')
             Toast('登出完成')
+             location.reload()
           },
           action => {
             console.log('点击了取消')
